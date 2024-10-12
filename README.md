@@ -4,4 +4,4 @@ This is a demo for Git and Github
 #Teacher 
 Gaurav Rajput
 #Students
-web developers
+web developeors
