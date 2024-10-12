@@ -1,6 +1,9 @@
 const apiKey ="a86a9b9b4fb24732a762101fdf791791";
 const blogContainer= document.getElementById(
     "blog-container");
+const searchField =document.getElementById('search-input');    
+const searchButton=document.getElementById('search-button');
+
 async function fetchRandomNews(){
     try{
         const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&pageSize=30&apiKey=${apiKey}`;
@@ -14,6 +17,18 @@ async function fetchRandomNews(){
         return [];
     }
 }
+searchButton.addEventListener('click', async()=>{
+    const query = searchField.ariaValueMax.trim()
+    if(query!==""){
+        try{
+            const articles = await fetchQuery(query)
+            displayBlogs(articles);
+        }catch(error){
+            console.log("Error fetching news by query ",error)
+        }
+    }
+})
+
 function displayBlogs(articles){
     blogContainer.innerHTML = "";
     articles.forEach((article) =>{
